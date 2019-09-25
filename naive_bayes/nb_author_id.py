@@ -12,6 +12,7 @@
     
 import sys
 from time import time
+from sklearn.naive_bayes import GaussianNB
 sys.path.append("../tools/")
 from email_preprocess import preprocess
 
@@ -26,7 +27,14 @@ features_train, features_test, labels_train, labels_test = preprocess()
 
 #########################################################
 ### your code goes here ###
+gnb = GaussianNB()
+clf = gnb.fit(features_train, labels_train)
 
+### use the trained classifier to predict labels for the test features
+pred = clf.predict(features_test)
+accuracy = clf.score(features_test, labels_test)
+
+print accuracy
 
 #########################################################
 
